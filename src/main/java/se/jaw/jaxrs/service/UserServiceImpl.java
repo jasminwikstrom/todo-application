@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
                 .map(UserDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteUser(String userId) {
+        userRepository.findById(Long.valueOf(userId)).ifPresent(userRepository::delete);
+    }
 }

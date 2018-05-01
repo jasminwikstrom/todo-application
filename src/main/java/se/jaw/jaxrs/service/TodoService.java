@@ -1,18 +1,18 @@
 package se.jaw.jaxrs.service;
 
+import se.jaw.jaxrs.model.ImportanceType;
 import se.jaw.jaxrs.model.TodoDto;
 import se.jaw.jaxrs.persistence.entity.Todo;
-
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TodoService {
 
-    Todo saveTodo(Todo todo);
+    TodoDto saveTodo(Todo todo);
 
-    Optional<TodoDto> getTodos(String id);
+    Optional<TodoDto> getTodo(String id);
 
-    List<TodoDto> getTodos();
+    List<TodoDto> getTodos(String userId, ImportanceType importanceType);
 
 }
