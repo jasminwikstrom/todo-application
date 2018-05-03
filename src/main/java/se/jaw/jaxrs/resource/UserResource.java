@@ -49,8 +49,7 @@ public class UserResource {
     @Path("/{id}")
     public UserDto getUser(@PathParam("id") String id) {
 
-        return userService.getUser(id)
-                .orElseThrow(() -> new NotFoundException("Not found"));
+        return userService.getUser(id);
     }
 
     @GET

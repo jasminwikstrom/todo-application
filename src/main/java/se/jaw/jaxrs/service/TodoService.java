@@ -15,4 +15,7 @@ public interface TodoService {
 
     List<TodoDto> getTodos(String userId, ImportanceType importanceType);
 
+    void deleteTodo(String id);
+
+    Todo todoAssignment(String id, String userId);
 }

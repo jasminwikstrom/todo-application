@@ -2,12 +2,13 @@ package se.jaw.jaxrs.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.jaw.jaxrs.model.BadUserInputException;
+import se.jaw.jaxrs.model.NotFoundException;
 import se.jaw.jaxrs.model.UserDto;
 import se.jaw.jaxrs.persistence.entity.User;
 import se.jaw.jaxrs.persistence.repository.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,12 +19,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
+
+        if (user.getFirstName() == null){
+            throw  new BadUserInputException("Firstname can not be null");
+
+        }
+
+        if (user.getLastName()== null) {
+            throw  new BadUserInputException("Lastname can not be null");
+        }
+
+
         return userRepository.save(user);
     }
 
     @Override
-    public Optional<UserDto> getUser(String id) {
-        return userRepository.findById(Long.valueOf(id)).map(UserDto::new);
+    public UserDto getUser(String id) {
+        return userRepository.findById(Long.valueOf(id))
+                .map(UserDto::new)
+                .orElseThrow(() -> new NotFoundException("User with id " + id + " not found"));
     }
 
     @Override
@@ -39,3 +53,4 @@ public class UserServiceImpl implements UserService {
         userRepository.findById(Long.valueOf(userId)).ifPresent(userRepository::delete);
     }
 }
+

@@ -1,7 +1,5 @@
 package se.jaw.jaxrs.persistence.entity;
 
-import se.jaw.jaxrs.model.TodoDto;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +20,8 @@ public class Todo {
 
     @Column(nullable = false)
     private String description;
+
+    public Todo (){}
 
     public Todo(Long userId, String importance, String description) {
         this.userId = userId;
