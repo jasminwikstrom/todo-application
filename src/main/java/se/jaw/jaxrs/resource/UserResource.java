@@ -2,7 +2,6 @@ package se.jaw.jaxrs.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import se.jaw.jaxrs.model.BadUserInputException;
 import se.jaw.jaxrs.model.UserDto;
 import se.jaw.jaxrs.persistence.entity.User;
 import se.jaw.jaxrs.service.UserService;
@@ -27,42 +26,36 @@ public class UserResource {
 
     @POST
     public Response addUser(UserDto userDto) {
-        if (userDto.getFirstName().contains("Jasmin")) {
-            throw new BadUserInputException("Bad username");
-        }
 
 
         User user = new User();
         user.setFirstName(userDto.getFirstName());
-
+        user.setLastName(userDto.getLastName());
 
         User save = userService.saveUser(user);
 
-        // 2
-        // URI location = uriInfo.getAbsolutePathBuilder().path(UserResource.class, "getUser").build(result.getId());
 
         return Response.ok(save).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deleteUser(@PathParam("id") String id) {
+        userService.deleteUser(id);
+        return Response.ok().build();
     }
 
     @GET
     @Path("/{id}")
     public UserDto getUser(@PathParam("id") String id) {
 
-        return userService.getUser(id)
-                .orElseThrow(() -> new NotFoundException("Not found"));
+        return userService.getUser(id);
     }
 
     @GET
     public List<UserDto> getUsers() {
         return userService.getUsers();
     }
-
-    // users/1001/
-    // note/{noteId}
-    //@POST
-//    @Path("{id}")
-//    public UserDto addNote(Note note) {
-//    }
 
 
 }

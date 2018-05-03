@@ -1,6 +1,9 @@
 package se.jaw.jaxrs.persistence.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Todo {
@@ -17,6 +20,14 @@ public class Todo {
 
     @Column(nullable = false)
     private String description;
+
+    public Todo (){}
+
+    public Todo(Long userId, String importance, String description) {
+        this.userId = userId;
+        this.importance = importance;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;

@@ -7,25 +7,25 @@ import se.jaw.jaxrs.persistence.entity.Todo;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class TodoDto {
 
-
-    private Long id;
-    private Long userId;
-
+    private String id;
+    private String userId;
     private ImportanceType importance;
     private String description;
 
+    public TodoDto() {}
+
     public TodoDto(Todo todo) {
-        this.id = todo.getId();
-        this.userId = todo.getUserId();
+        this.id = todo.getId().toString();
+        this.userId = todo.getUserId() != null ? todo.getUserId().toString() : null;
         this.importance = ImportanceType.valueOf(todo.getImportance());
         this.description = todo.getDescription();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
