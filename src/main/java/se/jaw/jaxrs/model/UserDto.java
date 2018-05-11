@@ -14,7 +14,8 @@ public final class UserDto {
     private String lastName;
     private List<TodoDto> todos;
 
-    public UserDto() {}
+    public UserDto() {
+    }
 
     public UserDto(User user) {
         this.id = user.getId().toString();

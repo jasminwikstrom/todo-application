@@ -12,7 +12,8 @@ public final class TodoDto {
     private ImportanceType importance;
     private String description;
 
-    public TodoDto() {}
+    public TodoDto() {
+    }
 
     public TodoDto(Todo todo) {
         this.id = todo.getId().toString();

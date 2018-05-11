@@ -58,6 +58,10 @@ public class TodoResource {
                 .orElseThrow(() -> new NotFoundException("Not found"));
     }
 
+    // users/user-id/todos GET --> All todos
+    // users/user-id/todos POST --> Add new TODO to user
+    // users/user-id/todos?priority=1000 GET --> All todos priority
+
     @PUT
     @Path("{id}")
     public Todo todoAssignment(@PathParam("id") String id, String userId) {

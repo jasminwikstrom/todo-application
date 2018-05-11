@@ -12,21 +12,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService {
+public final class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
 
+
+
     @Override
     public User saveUser(User user) {
 
-        if (user.getFirstName() == null){
-            throw  new BadUserInputException("Firstname can not be null");
+        if (user.getFirstName() == null) {
+            throw new BadUserInputException("Firstname can not be null");
 
         }
 
-        if (user.getLastName()== null) {
-            throw  new BadUserInputException("Lastname can not be null");
+        if (user.getLastName() == null) {
+            throw new BadUserInputException("Lastname can not be null");
         }
 
 

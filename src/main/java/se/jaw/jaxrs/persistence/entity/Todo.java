@@ -21,7 +21,8 @@ public class Todo {
     @Column(nullable = false)
     private String description;
 
-    public Todo (){}
+    public Todo() {
+    }
 
     public Todo(Long userId, String importance, String description) {
         this.userId = userId;

@@ -14,7 +14,7 @@ public interface TodoRepository extends JpaRepository<Todo, Long>, JpaSpecificat
 
     @Query(value = "SELECT * FROM todo t where " +
             "(:importance is null or t.importance = :importance) AND " +
-            "(:userId is null or t.user_id = :userId)", nativeQuery=true)
+            "(:userId is null or t.user_id = :userId)", nativeQuery = true)
     List<Todo> findAllByQuery(@Param("importance") String importance,
                               @Param("userId") Long userId);
 }

@@ -26,14 +26,11 @@ public class UserResource {
 
     @POST
     public Response addUser(UserDto userDto) {
-
-
         User user = new User();
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
 
         User save = userService.saveUser(user);
-
 
         return Response.ok(save).build();
     }
